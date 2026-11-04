@@ -17,7 +17,7 @@ _WM_LUT = [2, 41]
 
 
 def segment_optic_radiation(streamlines, atlas, expand_seg_bool, category_prior):
-    """Segment left/right meyer and baum loops of the optic radiation."""
+    """Segment left/right Inferior and Superior optic radiation."""
     n = len(streamlines)
     classification = _empty_classification(n)
 
@@ -64,12 +64,12 @@ def segment_optic_radiation(streamlines, atlas, expand_seg_bool, category_prior)
 
         meyer_bool = thal_bool & clip_ind & occip_sub & lat_thal_ind & extreme_ant_exclude
         classification = concat_classification_criteria(
-            classification, f"{_SIDE_LABELS[leftright]}meyer", meyer_bool
+            classification, f"{_SIDE_LABELS[leftright]}Inferior_OR", meyer_bool
         )
 
         baum_bool = thal_bool & ~meyer_bool & occip_sub & lat_thal_ind & ant_thal_exclude_bool
         classification = concat_classification_criteria(
-            classification, f"{_SIDE_LABELS[leftright]}baum", baum_bool
+            classification, f"{_SIDE_LABELS[leftright]}Superior_OR", baum_bool
         )
 
         if expand_seg_bool:

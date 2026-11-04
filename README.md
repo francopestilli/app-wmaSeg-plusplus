@@ -24,6 +24,11 @@ We kindly ask that you cite the following articles when publishing papers and co
 
 #### MIT Copyright (c) 2024 brainlife.io The University of Texas at Austin
 
+## Versioning and Tract Taxonomy
+
+### 2026-11
+- **Tract renaming:** Meyer's loop is now named **Inferior optic radiation** (`Inferior_OR`) and Baum's loop is now named **Superior optic radiation** (`Superior_OR`), following current anatomical nomenclature. Output classification names change from `left/rightmeyer`, `left/rightbaum` to `left/rightInferior_OR`, `left/rightSuperior_OR`.
+
 ## Running the App
 
 ### On Brainlife.io
@@ -89,7 +94,7 @@ All output files will be generated under the current working directory. The main
 - `classification.mat` — classification structure (streamline-to-tract assignment)
 - `tracts/` — one JSON file per named tract (up to 1000 streamlines each) plus a `tracts.json` index
 
-Segmented tracts include: Arcuate, SLF 1/2/3, Uncinate, IFOF, Cingulum, Forceps Minor/Major, Corpus Callosum subdivisions, Corticospinal Tract, Optic Radiation (Meyer/Baum loops), pArc, TPC, ILF, MDLFang, Aslant, VOF, thalamic projections, and cerebellar tracts.
+Segmented tracts include: Arcuate, SLF 1/2/3, Uncinate, IFOF, Cingulum, Forceps Minor/Major, Corpus Callosum subdivisions, Corticospinal Tract, Inferior optic radiation (`Inferior_OR`), Superior optic radiation (`Superior_OR`), pArc, TPC, ILF, MDLFang, Aslant, VOF, thalamic projections, and cerebellar tracts.
 
 | Output | Datatype | Description |
 |--------|----------|-------------|
