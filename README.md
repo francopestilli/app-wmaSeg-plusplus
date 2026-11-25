@@ -3,6 +3,49 @@
 
 # White Matter Anatomy Segmentation++ (wmaSeg++)
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Segments major white matter tracts from a whole-brain tractogram with wmaSeg++, a fast Python port of the wma_tools anatomical segmentation (Bullock et al. 2019) using the FreeSurfer Destrieux parcellation.**
+
+Converts the FreeSurfer aparc.a2009s+aseg to NIfTI, then applies anatomically defined ROI, planar and endpoint criteria (ported from the MATLAB wma_tools) in parallel to classify streamlines into named bundles such as the arcuate, IFOF, ILF, MdLF, VOF, cingulum, CST and callosal tracts, and builds VTK surfaces for visualisation. Use it for atlas-free anatomical tract segmentation without a MATLAB runtime. The tractogram and FreeSurfer directory must be from the same subject and in the same space; needs a FreeSurfer license.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/track/tck` · `neuro/freesurfer` |
+| 📤 **Outputs** | `neuro/wmc` · `neuro/tcks` |
+| 🐳 **Container** | `brainlife/freesurfer-mini:6.0.1` |
+| ⚙️ **Resources** | 8 CPUs · 32 GB memory · 3 h walltime |
+| 🔑 **Requires** | `FREESURFER_LICENSE` |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.987](https://doi.org/10.25663/brainlife.app.987) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `track` | `neuro/track/tck` | yes | Whole-brain tractogram (TCK format) |
+| `freesurfer` | `neuro/freesurfer` | yes | FreeSurfer output directory (aparc.a2009s+aseg parcellation required) |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `classification` | `neuro/wmc` | White matter tract classification: classification.mat, per-tract JSON files, and VTK surfaces. |
+| `tracts_tck` | `neuro/tcks` | Per-bundle TCK files (one per named tract), as alternative to WMC. Only produced when save_tck is enabled. |
+
+<details>
+<summary><b>⚙️ Parameters</b> (1)</summary>
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `save_tck` | boolean | `true` | Save per-tract TCK files to tracts_tck/ (alternative to WMC) |
+
+</details>
+
+📚 **References used by this App:**
+- Bullock D, Takemura H, Caiafa CF, et al. Associative white matter connecting the dorsal and ventral posterior human cortex. Brain Struct Funct 224(8):2631-2660 (2019). [doi:10.1007/s00429-019-01907-8](https://doi.org/10.1007/s00429-019-01907-8)
+
+<!-- brainlife-app:end -->
+
 `wmaSeg++` extends the white matter anatomy segmentation methodology of [Bullock et al. (2019)](https://doi.org/10.1007/s00429-019-01907-8) — originally implemented in MATLAB via the [wma_tools](https://github.com/DanNBullock/wma_tools) toolbox — with two major advances:
 
 1. **Full Python port** — no MATLAB runtime or license required. All ROI construction, planar criteria, KDTree intersection, and classification logic reimplemented in pure Python/NumPy/SciPy.
